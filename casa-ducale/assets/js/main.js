@@ -313,9 +313,21 @@
     const readForm = () => ({
       name: f.name.value.trim(), telefon: f.telefon.value.trim(), email: f.email.value.trim(),
       datum: f.datum.value ? new Date(f.datum.value + "T00:00").toLocaleDateString("de-DE", { weekday: "long", day: "2-digit", month: "2-digit", year: "numeric" }) : "",
-      uhrzeit: f.uhrzeit.value, personen: (form.querySelector("input[name=personen]:checked") || {}).value || "",
+      uhrzeit: f.uhrzeit.value, personen: headCount(),
       anmerkungen: f.anmerkungen.value.trim()
     });
+    // 1–7 per chip; "8+" opens a free number field without upper limit
+    const more = $("#rf-more"), count = $("#rf-count");
+    const syncMore = () => {
+      const big = (form.querySelector("input[name=personen]:checked") || {}).value === "8+ Personen";
+      more.hidden = !big; count.required = big;
+      if (big) count.focus({ preventScroll: true });
+    };
+    $$("input[name=personen]", form).forEach(r => r.addEventListener("change", syncMore));
+    function headCount() {
+      const v = (form.querySelector("input[name=personen]:checked") || {}).value || "";
+      return v === "8+ Personen" && count.value ? `${parseInt(count.value, 10)} Personen` : v;
+    }
     const showError = html => { errorBox.innerHTML = html; errorBox.hidden = false; };
     const showSuccess = text => {
       if (text) successText.textContent = text;
@@ -380,6 +392,36 @@
         submitBtn.disabled = false;
         submitBtn.innerHTML = label;
       }
+    });
+  }
+
+  /* ---------- Instagram ---------- */
+  /* ==== EINSTELLUNG: Instagram-Name ohne @, z. B. "casaducale_leverkusen". Leer = Suche auf Instagram. ==== */
+  const INSTAGRAM_HANDLE = "";
+  if (INSTAGRAM_HANDLE) {
+    $$(".js-insta").forEach(a => (a.href = `https://www.instagram.com/${INSTAGRAM_HANDLE}/`));
+    $$(".js-insta-handle").forEach(b => (b.textContent = `@${INSTAGRAM_HANDLE}`));
+  }
+
+  /* ---------- Map (loads only after a click) + route planner ---------- */
+  {
+    const DEST = "Casa Ducale, Wiesdorfer Pl. 30a, 51373 Leverkusen";
+    const box = $("#mapBox");
+    $(".js-load-map").addEventListener("click", () => {
+      const f = document.createElement("iframe");
+      f.src = "https://www.google.com/maps?q=" + encodeURIComponent(DEST) + "&z=16&output=embed";
+      f.title = "Karte: Casa Ducale, Wiesdorfer Pl. 30a, Leverkusen";
+      f.loading = "lazy"; f.referrerPolicy = "no-referrer-when-downgrade";
+      box.appendChild(f); box.classList.add("is-loaded");
+    });
+    $("#routeForm").addEventListener("submit", e => {
+      e.preventDefault();
+      const from = e.target.elements.from.value.trim();
+      const mode = (e.target.querySelector("input[name=mode]:checked") || {}).value || "driving";
+      const url = "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(DEST) +
+        (from ? "&origin=" + encodeURIComponent(from) : "") + "&travelmode=" + mode;
+      const w = window.open(url, "_blank", "noopener");
+      if (!w) location.href = url;
     });
   }
 

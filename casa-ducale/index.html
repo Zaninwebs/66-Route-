@@ -78,6 +78,7 @@
         <a href="#bewertungen"><span>06</span>Bewertungen</a>
         <a href="#reservierung"><span>07</span>Reservierung</a>
         <a href="#kontakt"><span>08</span>Kontakt</a>
+        <a href="#anfahrt"><span>09</span>Anfahrt</a>
       </nav>
       <aside class="mmenu__side">
         <figure class="mmenu__photo media">
@@ -389,6 +390,11 @@
                 <label><input type="radio" name="personen" value="7 Personen"><span>7</span></label>
                 <label><input type="radio" name="personen" value="8+ Personen"><span>8+</span></label>
               </div>
+              <div class="book__more" id="rf-more" hidden>
+                <label for="rf-count">Wie viele Personen genau?</label>
+                <input id="rf-count" name="personenzahl" type="number" inputmode="numeric" min="8" step="1" placeholder="z. B. 12">
+                <small>Auch für große Gruppen, Familienfeiern und Firmenessen – ohne Obergrenze.</small>
+              </div>
             </fieldset>
             <div class="book__field"><label for="rf-date">Datum</label><input id="rf-date" name="datum" type="date" required></div>
             <div class="book__field"><label for="rf-time">Uhrzeit</label><input id="rf-time" name="uhrzeit" type="time" step="900" min="08:30" max="21:30" required></div>
@@ -448,6 +454,43 @@
         <a href="#reservierung" class="btn btn--gold js-reserve">Tisch reservieren</a>
       </div>
     </section>
+
+    <!-- ============ MAP + ROUTE ============ -->
+    <section class="where" id="anfahrt" aria-labelledby="where-title">
+      <div class="where__map reveal" id="mapBox">
+        <div class="where__placeholder">
+          <svg class="where__grid" viewBox="0 0 400 260" aria-hidden="true" preserveAspectRatio="xMidYMid slice">
+            <path d="M-20 70 C 80 60, 140 110, 230 96 S 360 40, 430 62" /><path d="M-20 190 C 70 170, 160 200, 250 176 S 360 150, 430 170" />
+            <path d="M70 -20 C 80 60, 60 140, 96 280" /><path d="M300 -20 C 280 70, 320 160, 290 280" /><path d="M150 -20 L 190 280" class="thin" /><path d="M-20 130 L 430 120" class="thin" />
+          </svg>
+          <span class="where__pin" aria-hidden="true"><img src="assets/img/logo-160.webp" alt="" width="160" height="160"></span>
+          <div class="where__card">
+            <strong>Casa Ducale</strong>
+            <span>Wiesdorfer Pl. 30a · Etage 1, Die Luminaden<br>51373 Leverkusen-Wiesdorf</span>
+            <button type="button" class="btn btn--ghost btn--sm js-load-map">Karte anzeigen</button>
+            <small>Beim Laden der Karte werden Daten an Google übertragen.</small>
+          </div>
+        </div>
+      </div>
+      <div class="where__text reveal">
+        <p class="eyebrow">Anfahrt</p>
+        <h2 id="where-title" class="h2">So finden Sie <span class="gold">zu uns.</span></h2>
+        <p class="where__lead">Mitten in Leverkusen-Wiesdorf, in den Luminaden auf Etage 1. Geben Sie Ihren Startpunkt ein – wir zeigen Ihnen den Weg.</p>
+        <form class="route" id="routeForm">
+          <label for="route-from">Ihr Startpunkt</label>
+          <div class="route__row">
+            <input id="route-from" name="from" type="text" autocomplete="street-address" placeholder="Straße, Ort – oder leer lassen für Ihren Standort">
+            <button type="submit" class="btn btn--gold">Route planen <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </div>
+          <div class="route__modes" role="radiogroup" aria-label="Verkehrsmittel">
+            <label><input type="radio" name="mode" value="driving" checked><span>Auto</span></label>
+            <label><input type="radio" name="mode" value="transit"><span>Bus &amp; Bahn</span></label>
+            <label><input type="radio" name="mode" value="walking"><span>Zu Fuß</span></label>
+            <label><input type="radio" name="mode" value="bicycling"><span>Fahrrad</span></label>
+          </div>
+        </form>
+      </div>
+    </section>
   </main>
 
   <footer class="foot">
@@ -456,6 +499,10 @@
     </div>
     <p class="foot__word" aria-hidden="true">Casa Ducale</p>
     <p class="foot__sub">Ristorante · Leverkusen</p>
+    <a class="insta js-insta" href="https://www.instagram.com/explore/search/keyword/?q=casa%20ducale%20leverkusen" target="_blank" rel="noopener">
+      <span class="insta__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" class="dot"/></svg></span>
+      <span class="insta__text"><small>Folgen Sie uns auf Instagram</small><b class="js-insta-handle">Casa Ducale Leverkusen</b></span>
+    </a>
     <nav class="foot__links" aria-label="Footer">
       <a class="ulink" href="#top">Startseite</a>
       <a class="ulink" href="#familie">Über uns</a>
@@ -464,6 +511,7 @@
       <a class="ulink" href="#bewertungen">Bewertungen</a>
       <a class="ulink" href="#reservierung">Reservierung</a>
       <a class="ulink" href="#kontakt">Kontakt</a>
+      <a class="ulink" href="#anfahrt">Anfahrt</a>
       <a class="ulink" href="impressum.html">Impressum</a>
       <a class="ulink" href="datenschutz.html">Datenschutz</a>
     </nav>
