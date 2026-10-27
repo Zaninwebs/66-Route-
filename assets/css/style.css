@@ -784,3 +784,69 @@ em { font-family: var(--f-serif); font-style: italic; font-weight: 400; text-tra
   .moment__sticky { position: relative; }
   .moment__content { opacity: 1; transform: none; }
 }
+
+/* ---------- Booking: free head count from 8 people ---------- */
+.book__more { margin-top: 14px; display: grid; gap: 8px; animation: fadeUp .5s var(--ease); }
+.book__more label { font-size: 10px; font-weight: 700; letter-spacing: .26em; text-transform: uppercase; color: var(--gold-l); }
+.book__more input { width: 100%; min-height: 54px; padding: 12px 16px; border-radius: 4px; border: 1px solid var(--gold); background: rgba(10,10,10,.55);
+  color: var(--text); font: 600 22px/1 var(--f-body); color-scheme: dark; }
+.book__more input:focus { outline: none; box-shadow: 0 0 0 3px rgba(200,155,91,.25); }
+.book__more small { font-size: 12px; color: var(--muted); }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+/* ---------- Map + route ---------- */
+.where { display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(30px, 6vw, 100px); align-items: center;
+  padding: clamp(70px, 12vh, 140px) var(--pad); background: linear-gradient(180deg, var(--black), var(--brown)); border-top: 1px solid rgba(200,155,91,.1); }
+.where__map { position: relative; aspect-ratio: 4 / 3; border-radius: 6px; overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(200,155,91,.3), 0 50px 90px -40px rgba(0,0,0,.95); background: #1b130e; }
+.where__map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; filter: grayscale(.25) contrast(1.05); }
+.where__placeholder { position: absolute; inset: 0; display: grid; place-items: center;
+  background: radial-gradient(60% 60% at 50% 45%, rgba(255,120,30,.18), transparent 70%), linear-gradient(160deg, #211812, #0d0a08); }
+.where__grid { position: absolute; inset: 0; width: 100%; height: 100%; }
+.where__grid path { fill: none; stroke: rgba(224,184,120,.22); stroke-width: 6; stroke-linecap: round; }
+.where__grid path.thin { stroke-width: 2; stroke: rgba(224,184,120,.12); }
+.where__pin { position: absolute; left: 50%; top: 40%; width: 64px; height: 64px; transform: translate(-50%, -50%); border-radius: 50%;
+  box-shadow: 0 0 0 6px rgba(200,90,30,.25), 0 0 0 14px rgba(200,90,30,.1), 0 12px 30px rgba(0,0,0,.6); animation: pinPulse 2.4s ease-in-out infinite; }
+.where__pin img { width: 100%; height: 100%; border-radius: 50%; }
+@keyframes pinPulse { 50% { box-shadow: 0 0 0 10px rgba(200,90,30,.18), 0 0 0 24px rgba(200,90,30,.05), 0 12px 30px rgba(0,0,0,.6); } }
+.where__card { position: absolute; left: 50%; bottom: 7%; transform: translateX(-50%); width: min(88%, 380px); display: grid; gap: 8px; justify-items: center; text-align: center;
+  padding: 18px 20px; border-radius: 6px; background: rgba(10,10,10,.78); border: 1px solid rgba(200,155,91,.28); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.where__card strong { font: 800 28px/1 var(--f-display); font-stretch: 75%; text-transform: uppercase; color: var(--text); }
+.where__card span { font-size: 13px; color: var(--muted); line-height: 1.5; }
+.where__card small { font-size: 10.5px; color: rgba(175,167,156,.75); }
+.where__map.is-loaded .where__placeholder { display: none; }
+.where__lead { color: var(--muted); max-width: 46ch; margin-bottom: 28px; }
+.route { display: grid; gap: 12px; }
+.route > label { font-size: 10px; font-weight: 700; letter-spacing: .26em; text-transform: uppercase; color: var(--muted); }
+.route__row { display: flex; gap: 10px; flex-wrap: wrap; }
+.route__row input { flex: 1 1 240px; min-height: 54px; padding: 12px 16px; border-radius: 999px; border: 1px solid rgba(245,240,232,.2); background: rgba(10,10,10,.5);
+  color: var(--text); font: 500 15px/1 var(--f-body); }
+.route__row input:focus { outline: none; border-color: var(--gold); }
+.route__row .btn { min-height: 54px; }
+.route__modes { display: flex; flex-wrap: wrap; gap: 8px; }
+.route__modes label { position: relative; }
+.route__modes input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.route__modes span { display: inline-flex; align-items: center; min-height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid rgba(245,240,232,.18);
+  font-size: 12px; font-weight: 600; letter-spacing: .06em; color: var(--muted); transition: all .3s; }
+.route__modes input:checked + span { border-color: var(--gold); color: var(--gold-l); background: rgba(200,155,91,.1); }
+.route__modes input:focus-visible + span { outline: 1px solid var(--gold-l); outline-offset: 3px; }
+
+/* ---------- Instagram ---------- */
+.insta { display: inline-flex; align-items: center; gap: 14px; margin: 30px auto 0; padding: 12px 22px 12px 12px; border-radius: 999px;
+  border: 1px solid rgba(200,155,91,.3); background: rgba(21,17,13,.6); transition: border-color .4s, transform .5s var(--ease), box-shadow .5s; }
+.insta:hover { border-color: var(--gold-l); transform: translateY(-2px); box-shadow: 0 0 40px -6px rgba(255,120,30,.45); }
+.insta__icon { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+.insta__icon svg { width: 24px; height: 24px; fill: none; stroke: #fff; stroke-width: 1.8; }
+.insta__icon svg .dot { fill: #fff; stroke: none; }
+.insta__text { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; text-align: left; }
+.insta__text small { font-size: 10px; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); }
+.insta__text b { font: 600 17px/1 var(--f-body); color: var(--text); }
+.foot__sub + .insta { display: flex; width: max-content; }
+
+@media (max-width: 900px) {
+  .where { grid-template-columns: 1fr; }
+  .where__map { aspect-ratio: 1 / 1; }
+  .route__row .btn { flex: 1 1 100%; }
+}
+@media (max-width: 900px) { .where__pin { top: 22%; } }
