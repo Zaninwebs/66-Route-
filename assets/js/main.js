@@ -325,7 +325,7 @@
   const RESERVATION_CONFIG = {
     web3formsKey: "",
     whatsappNumber: "",
-    restaurantPhone: "0214 2029955",
+    restaurantPhone: "0214 202 99 55",
     restaurantPhoneLink: "tel:+492142029955"
   };
   {
@@ -379,7 +379,7 @@
           d.anmerkungen ? `Anmerkungen: ${d.anmerkungen}` : ""
         ].filter(Boolean).join("\n");
         window.open(`https://wa.me/${RESERVATION_CONFIG.whatsappNumber}?text=${encodeURIComponent(text)}`, "_blank", "noopener");
-        showSuccess("Deine Nachricht ist in WhatsApp vorbereitet – einfach dort auf „Senden“ tippen. Wir bestätigen deinen Tisch so schnell wie möglich.");
+        showSuccess("Ihre Nachricht ist in WhatsApp vorbereitet – einfach dort auf „Senden“ tippen. Wir bestätigen Ihren Tisch so schnell wie möglich.");
       });
     }
 
@@ -418,7 +418,7 @@
         showSuccess();
       } catch (err) {
         console.error("Reservierung fehlgeschlagen:", err);
-        showError(`Das Senden hat leider nicht geklappt. Bitte ruf uns kurz an: <a href="${RESERVATION_CONFIG.restaurantPhoneLink}">${RESERVATION_CONFIG.restaurantPhone}</a>`);
+        showError(`Das Senden hat leider nicht geklappt. Bitte rufen Sie uns kurz an: <a href="${RESERVATION_CONFIG.restaurantPhoneLink}">${RESERVATION_CONFIG.restaurantPhone}</a>`);
       } finally {
         submitBtn.disabled = false;
         submitBtn.innerHTML = label;

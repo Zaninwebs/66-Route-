@@ -850,3 +850,93 @@ em { font-family: var(--f-serif); font-style: italic; font-weight: 400; text-tra
   .route__row .btn { flex: 1 1 100%; }
 }
 @media (max-width: 900px) { .where__pin { top: 22%; } }
+
+/* ---------- Drinks menu (tab "Getränke") ---------- */
+.menu__list--drinks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(28px, 4vw, 64px); align-items: start; }
+.dr__group h3 { font: 800 clamp(22px, 2vw, 30px)/1 var(--f-display); font-stretch: 75%; text-transform: uppercase; letter-spacing: .02em; color: var(--gold-l);
+  padding-bottom: 14px; margin-bottom: 6px; border-bottom: 1px solid rgba(200,155,91,.35); }
+.menu__list--drinks li { display: grid; grid-template-columns: 52px auto 1fr auto; align-items: baseline; gap: 10px; padding: 11px 0;
+  border-bottom: 1px solid rgba(245,240,232,.06); font: 500 15px/1.35 var(--f-body); text-transform: none; letter-spacing: 0;
+  opacity: 0; transform: translateY(10px); transition: opacity .6s var(--ease), transform .7s var(--ease); transition-delay: calc(var(--i, 0) * 25ms); }
+.menu__list--drinks.is-in li { opacity: 1; transform: none; }
+.menu__list--drinks li::before, .menu__list--drinks li::after { content: none; }
+.dr__vol { font-size: 11px; font-weight: 700; letter-spacing: .08em; color: var(--gold); font-variant-numeric: tabular-nums; }
+.dr__name { color: var(--text); }
+.dr__name small { display: block; font-size: 12px; color: var(--muted); }
+.menu__list--drinks li > i { border-bottom: 1px dotted rgba(245,240,232,.25); transform: translateY(-.3em); min-width: 12px; }
+.menu__list--drinks li > b { font-weight: 700; color: var(--gold-l); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.dr__foot { margin-top: 14px; font-size: 12.5px; line-height: 1.55; color: var(--muted); }
+.dr__legend { grid-column: 1 / -1; font-size: 12px; color: var(--muted); letter-spacing: .02em; }
+@media (max-width: 1100px) { .menu__list--drinks { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 700px) { .menu__list--drinks { grid-template-columns: 1fr; } }
+
+/* ---------- Full menu with prices (shares the drinks row style) ---------- */
+.menu__list--priced { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(28px, 5vw, 80px); align-items: start; }
+.menu__list--priced li, .menu__list--drinks li { display: grid; grid-template-columns: 44px auto 1fr auto; align-items: baseline; gap: 10px; padding: 12px 0;
+  border-bottom: 1px solid rgba(245,240,232,.06); font: 500 15.5px/1.35 var(--f-body); text-transform: none; letter-spacing: 0;
+  opacity: 0; transform: translateY(10px); transition: opacity .6s var(--ease), transform .7s var(--ease); transition-delay: calc(var(--i, 0) * 25ms); }
+.menu__list--priced.is-in li { opacity: 1; transform: none; }
+.menu__list--priced li::before, .menu__list--priced li::after { content: none; }
+.menu__list--priced li > i { border-bottom: 1px dotted rgba(245,240,232,.25); transform: translateY(-.3em); min-width: 12px; }
+.menu__list--priced li > b { font-weight: 700; color: var(--gold-l); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.menu__list--priced .dr__name, .menu__list--drinks .dr__name { max-width: 34ch; }
+.menu__list--priced .dr__name small { display: block; margin-top: 3px; font-size: 12.5px; line-height: 1.45; color: var(--muted); }
+.menu__list--priced h3 { font: 800 clamp(22px, 2vw, 30px)/1 var(--f-display); font-stretch: 75%; text-transform: uppercase; letter-spacing: .02em; color: var(--gold-l);
+  padding-bottom: 14px; margin-bottom: 6px; border-bottom: 1px solid rgba(200,155,91,.35); }
+.dr__note { margin: 4px 0 10px; padding: 10px 14px; border-left: 2px solid var(--gold); background: rgba(200,155,91,.07); font-size: 13px; line-height: 1.5; color: var(--text); }
+/* single-group tabs spread their rows over two columns */
+.menu__list--one { grid-template-columns: 1fr; }
+.menu__list--one ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(28px, 5vw, 80px); }
+.menu__disclaimer { margin-top: 26px; font-size: 12px; color: var(--muted); }
+@media (max-width: 800px) {
+  .menu__list--priced, .menu__list--one ul { grid-template-columns: 1fr; }
+  .menu__list--priced li, .menu__list--drinks li { grid-template-columns: 42px auto 1fr auto; font-size: 15px; }
+}
+
+/* ---------- Award (Gourmets International) ---------- */
+.hero__award { display: inline-flex; align-items: center; gap: 10px; align-self: flex-start; margin-bottom: clamp(12px, 2vh, 22px);
+  padding: 7px 16px; border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--text);
+  background: rgba(10,10,10,.35); border: 1px solid rgba(224,184,120,.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  opacity: 0; transform: translateY(12px); transition: opacity 1s var(--ease) .4s, transform 1s var(--ease) .4s; }
+.hero__award .stars { color: var(--gold-l); letter-spacing: .1em; font-size: 12px; }
+.is-ready .hero__award { opacity: 1; transform: none; }
+.hero.is-swapped .hero__award { opacity: 0; transition-delay: 0s; }
+@media (max-width: 900px) { .hero__award { display: none; } }
+
+.award { display: grid; grid-template-columns: auto 1fr; gap: clamp(24px, 4vw, 60px); align-items: center; max-width: 1100px; margin: clamp(56px, 10vh, 110px) auto 0;
+  padding: clamp(24px, 3.5vw, 44px); border-radius: 6px; border: 1px solid rgba(224,184,120,.28);
+  background: radial-gradient(80% 120% at 0% 50%, rgba(200,155,91,.14), transparent 60%), rgba(21,17,13,.6); }
+.award__seal { width: clamp(120px, 13vw, 170px); aspect-ratio: 1; filter: drop-shadow(0 0 30px rgba(224,184,120,.35)); }
+.award__seal svg { width: 100%; height: 100%; }
+.award__seal .ring { fill: #120d09; stroke: var(--gold); stroke-width: 1.5; }
+.award__seal .inner { fill: none; stroke: rgba(224,184,120,.5); stroke-width: 1; }
+.award__seal .arc { font: 700 8.6px var(--f-body); letter-spacing: .22em; fill: var(--gold-l); transform-box: view-box; transform-origin: 60px 60px; animation: ring-spin 40s linear infinite; }
+.award__seal .big { font: 800 40px var(--f-display); text-anchor: middle; fill: var(--gold-l); }
+.award__seal .stars { font: 10px var(--f-body); text-anchor: middle; fill: var(--gold); letter-spacing: 1px; }
+.award__title { margin: 10px 0 12px; font: 500 clamp(26px, 2.8vw, 42px)/1.15 var(--f-serif); color: var(--text); }
+.award__title em { color: var(--gold-l); }
+.award__copy { color: var(--muted); max-width: 60ch; }
+@media (max-width: 700px) { .award { grid-template-columns: 1fr; justify-items: center; text-align: center; } .award .eyebrow { justify-content: center; } }
+
+/* ---------- Events ---------- */
+.events { --cover: var(--brown); display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(36px, 6vw, 100px); align-items: center;
+  padding: clamp(80px, 14vh, 160px) var(--pad); background: linear-gradient(180deg, var(--brown), var(--black)); }
+.events__photo { margin: 0; aspect-ratio: 1290 / 699; border-radius: 4px; box-shadow: 0 0 0 1px rgba(224,184,120,.25), 0 50px 90px -40px rgba(0,0,0,.95); }
+.events__text > p:not(.eyebrow) { color: var(--muted); max-width: 52ch; }
+.events__list { margin: 22px 0; display: grid; gap: 10px; }
+.events__list li { display: flex; gap: 12px; align-items: center; font-weight: 600; }
+.events__list li::before { content: ""; width: 18px; height: 1px; background: var(--gold); }
+.events__hint { font-size: 13px; font-style: italic; }
+.events__cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+@media (max-width: 900px) { .events { grid-template-columns: 1fr; } .events__cta .btn { flex: 1 1 100%; } }
+
+/* ---------- Reservation: phone first ---------- */
+.reserve__phone { display: inline-flex; flex-direction: column; gap: 6px; padding: 16px 26px; border-radius: 6px; margin-bottom: 18px;
+  border: 1px solid rgba(224,184,120,.45); background: rgba(21,17,13,.65); transition: border-color .4s, box-shadow .5s; }
+.reserve__phone span { font-size: 10px; font-weight: 700; letter-spacing: .26em; text-transform: uppercase; color: var(--muted); }
+.reserve__phone b { font: 800 clamp(30px, 3.4vw, 46px)/1 var(--f-display); font-stretch: 78%; letter-spacing: .02em; color: var(--gold-l); }
+.reserve__phone:hover { border-color: var(--gold-l); box-shadow: 0 0 40px -8px rgba(224,184,120,.45); }
+.reserve__or { margin-bottom: 18px; color: var(--muted); font-size: 14px; }
+
+.dr__vol { white-space: nowrap; }
+@media (max-width: 800px) { .dr__vol { font-size: 10px; letter-spacing: .02em; } }
